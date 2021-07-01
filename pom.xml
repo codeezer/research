@@ -156,25 +156,25 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
-      <version>2.9.10</version>
+      <version>2.9.10</version><!--$NO-MVN-MAN-VER$-->
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.9.10.5</version>
+      <version>2.9.10.5</version><!--$NO-MVN-MAN-VER$-->
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
-      <version>2.9.10</version>
+      <version>2.9.10</version><!--$NO-MVN-MAN-VER$-->
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-rdf-api</artifactId>
-      <version>0.5.0</version>
+      <version>0.5.0</version><!--$NO-MVN-MAN-VER$-->
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -300,7 +300,7 @@
     <dependency>
       <groupId>com.github.jsonld-java</groupId>
       <artifactId>jsonld-java</artifactId>
-      <version>0.13.0</version>
+      <version>0.13.0</version><!--$NO-MVN-MAN-VER$-->
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -370,6 +370,16 @@
       <artifactId>commons-io</artifactId>
       <version>2.6</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+    	<groupId>net.sourceforge.owlapi</groupId>
+    	<artifactId>org.semanticweb.hermit</artifactId>
+    	<version>1.4.3.517</version>
+    </dependency>
+    <dependency>
+    	<groupId>net.sourceforge.owlapi</groupId>
+    	<artifactId>owlexplanation</artifactId>
+    	<version>2.0.1</version>
     </dependency>
   </dependencies>
   <properties>

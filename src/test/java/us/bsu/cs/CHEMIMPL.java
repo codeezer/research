@@ -1,13 +1,13 @@
 package us.bsu.cs;
 
-import java.util.Timer;
+// import java.util.Timer;
 
 public class CHEMIMPL {
 	public static String ONT_FILE = "/home/ezer/Documents/research/implementation/files/temporal.owl";
 	static int RunIntakePump1, RunIntakePump2, RunIntakePump3, RunOuttakePump, RunMixer, EmergencyFlush;
 	static boolean RunProcess, EmergencyStop;
 	
-	public static void printComponentsStatus(String title) {
+	public void printComponentsStatus(String title) {
 		System.out.println("-----" + title + "-----");
 		System.out.println("RunIntakePump1: " + RunIntakePump1);
 		System.out.println("RunIntakePump2: " + RunIntakePump2);
@@ -70,7 +70,14 @@ public class CHEMIMPL {
 	}
 	
 	public static void main(String[] args) {
+		OWLAPI owlAPI = new OWLAPI(ONT_FILE);
+		// owlAPI.loadClassesFromOntology();
+		// owlAPI.loadIndividualsFromOntology();
+		// owlAPI.loadDataPropertyFromOntology();
+		// owlAPI.loadObjectPropertyFromOntology();
+		owlAPI.startReasoner();
+		owlAPI.isConsistent();
+		owlAPI.giveExplanation();
 		simulateControlLogic();
-		
 	}
 }
