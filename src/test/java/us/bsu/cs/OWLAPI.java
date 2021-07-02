@@ -2,23 +2,17 @@ package us.bsu.cs;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Set;
 
 import org.semanticweb.HermiT.ReasonerFactory;
-import org.semanticweb.owl.explanation.api.Explanation;
-import org.semanticweb.owl.explanation.api.ExplanationGenerator;
-import org.semanticweb.owl.explanation.api.ExplanationGeneratorFactory;
-import org.semanticweb.owl.explanation.api.ExplanationManager;
-import org.semanticweb.owl.explanation.impl.blackbox.checker.InconsistentOntologyExplanationGeneratorFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
-import org.semanticweb.owlapi.model.OWLAxiom;
+import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 
-import org.semanticweb.owlapi.model.OWLClass;
+
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLIndividual;
@@ -97,19 +91,13 @@ public class OWLAPI {
 		System.out.println("Consistent Ontology: " + reasoner.isConsistent());
 	}
 	
-	public void giveExplanation() {
-		ExplanationGeneratorFactory<OWLAxiom> expGenFactory = 
-				ExplanationManager.createExplanationGeneratorFactory(reasonerFactory);
-		ExplanationGenerator<OWLAxiom> explanationGenerator = expGenFactory.createExplanationGenerator(ontology);
-		
-		OWLAxiom entailment;
-		
-		Set<Explanation<OWLAxiom>> explanation = explanationGenerator.getExplanations(entailment, 5);
-		System.out.println(explanation);
-//		
-//		InconsistentOntologyExplanationGeneratorFactory ioegFactory = 
-//				new InconsistentOntologyExplanationGeneratorFactory(reasonerFactory, 10000);
-//		ExplanationGenerator<OWLAxiom> generator = ioegFactory.createExplanationGenerator(ontology);
+	public void provideExplanations() {
+//		InconsistentOntologyExplanationGeneratorFactory f = 
+//				new InconsistentOntologyExplanationGeneratorFactory(reasonerFactory, 0);
+//		ExplanationGenerator<OWLAxiom> gen = f.createExplanationGenerator(ontology);
+//		OWLAxiom entailment = dataFactory.getOWLSubClassOfAxiom(dataFactory.getOWLThing(), dataFactory.getOWLNothing());
+//		System.out.println(entailment);
+		// gen.getExplanations(entailment);
 	}
 	
 }

@@ -1,5 +1,7 @@
 package us.bsu.cs;
 
+import java.util.Random;
+
 // import java.util.Timer;
 
 public class CHEMIMPL {
@@ -7,7 +9,7 @@ public class CHEMIMPL {
 	static int RunIntakePump1, RunIntakePump2, RunIntakePump3, RunOuttakePump, RunMixer, EmergencyFlush;
 	static boolean RunProcess, EmergencyStop;
 	
-	public void printComponentsStatus(String title) {
+	public static void printComponentsStatus(String title) {
 		System.out.println("-----" + title + "-----");
 		System.out.println("RunIntakePump1: " + RunIntakePump1);
 		System.out.println("RunIntakePump2: " + RunIntakePump2);
@@ -17,21 +19,32 @@ public class CHEMIMPL {
 		System.out.println("EmergencyFlush: " + EmergencyFlush);
 	}
 	
+	public static void injectMixerAttack() {
+		RunMixer = 1;
+	}
+	
 	public static void simulateControlLogic() {
+		Random random = new Random();
+		
 		RunIntakePump1 = 0; RunIntakePump2 = 0; RunIntakePump3 = 0;
 		RunOuttakePump = 0; RunMixer = 0; EmergencyFlush = 0;
 		
-		RunProcess = true;
-		EmergencyStop = false;
+		RunProcess = random.nextBoolean();
+		EmergencyStop = random.nextBoolean();
+		int N = 1700;
+		int attackTime = random.nextInt(N);
 		
 		int emergencyFlag = 0;
 		int runFlag = 0;
 		
-		for (int i = 0; i < 17; i++) {
+		for (int i = 0; i < N; i++) {
+			RunProcess = random.nextBoolean();
+			EmergencyStop = random.nextBoolean();
 			
-//			if (RunMixer == 1) {
-//				System.out.println("HERE");
-//			}
+			if (i==attackTime) {
+				System.out.println("Attack injected at time: " + attackTime);
+				injectMixerAttack();
+			}
 			
 			if (EmergencyStop) {
 				RunIntakePump1 = 0; RunIntakePump2 = 0; RunIntakePump3 = 0;
@@ -43,7 +56,8 @@ public class CHEMIMPL {
 				}
 			}
 			else if (RunProcess) {
-				emergencyFlag = 0;
+				EmergencyFlush = 0; emergencyFlag = 0;
+				
 				if (runFlag<=1) {
 					RunIntakePump1 = 1;
 				} else if (runFlag<=3) {
@@ -60,24 +74,31 @@ public class CHEMIMPL {
 					RunOuttakePump = 1;
 				} else if (runFlag<=16) {
 					RunOuttakePump = 0;
-					if (runFlag == 16) {
+					if (runFlag==16) {
 						runFlag = -1;
 					}
 				}
 				runFlag++;
+			}
+			if (RunMixer == 1 && EmergencyFlush == 1 ) {
+				System.out.println("Violation 1!");
+				printComponentsStatus("");
+			}
+			if (EmergencyStop == true && RunMixer == 1) {
+				System.out.println("Violation 2!");
+				printComponentsStatus("");
+			}
+			if (RunMixer == 1 && RunIntakePump1 == 1) {
+				System.out.println("Violation 3!");
+				printComponentsStatus("");
 			}
 		}
 	}
 	
 	public static void main(String[] args) {
 		OWLAPI owlAPI = new OWLAPI(ONT_FILE);
-		// owlAPI.loadClassesFromOntology();
-		// owlAPI.loadIndividualsFromOntology();
-		// owlAPI.loadDataPropertyFromOntology();
-		// owlAPI.loadObjectPropertyFromOntology();
 		owlAPI.startReasoner();
 		owlAPI.isConsistent();
-		owlAPI.giveExplanation();
 		simulateControlLogic();
 	}
 }
