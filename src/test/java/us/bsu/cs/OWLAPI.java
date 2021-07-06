@@ -92,11 +92,11 @@ public class OWLAPI {
 	}
 	
 	public void provideExplanations() {
-//		InconsistentOntologyExplanationGeneratorFactory f = 
-//				new InconsistentOntologyExplanationGeneratorFactory(reasonerFactory, 0);
-//		ExplanationGenerator<OWLAxiom> gen = f.createExplanationGenerator(ontology);
-//		OWLAxiom entailment = dataFactory.getOWLSubClassOfAxiom(dataFactory.getOWLThing(), dataFactory.getOWLNothing());
-//		System.out.println(entailment);
+		// InconsistentOntologyExplanationGeneratorFactory f = 
+		//		new InconsistentOntologyExplanationGeneratorFactory(reasonerFactory, 0);
+		// ExplanationGenerator<OWLAxiom> gen = f.createExplanationGenerator(ontology);
+		// OWLAxiom entailment = dataFactory.getOWLSubClassOfAxiom(dataFactory.getOWLThing(), dataFactory.getOWLNothing());
+		// System.out.println(entailment);
 		// gen.getExplanations(entailment);
 	}
 	

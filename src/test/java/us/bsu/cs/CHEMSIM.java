@@ -2,12 +2,13 @@ package us.bsu.cs;
 
 import java.util.Random;
 
-// import java.util.Timer;
-
-public class CHEMIMPL {
-	public static String ONT_FILE = "/home/ezer/Documents/research/implementation/files/temporal.owl";
+public class CHEMSIM {
 	static int RunIntakePump1, RunIntakePump2, RunIntakePump3, RunOuttakePump, RunMixer, EmergencyFlush;
 	static boolean RunProcess, EmergencyStop;
+	
+	public CHEMSIM() {
+		
+	}
 	
 	public static void printComponentsStatus(String title) {
 		System.out.println("-----" + title + "-----");
@@ -23,7 +24,7 @@ public class CHEMIMPL {
 		RunMixer = 1;
 	}
 	
-	public static void simulateControlLogic() {
+	public void simulateControlLogic() {
 		Random random = new Random();
 		
 		RunIntakePump1 = 0; RunIntakePump2 = 0; RunIntakePump3 = 0;
@@ -93,12 +94,5 @@ public class CHEMIMPL {
 				printComponentsStatus("");
 			}
 		}
-	}
-	
-	public static void main(String[] args) {
-		OWLAPI owlAPI = new OWLAPI(ONT_FILE);
-		owlAPI.startReasoner();
-		owlAPI.isConsistent();
-		simulateControlLogic();
 	}
 }
