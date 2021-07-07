@@ -8,7 +8,10 @@ public class CASEIMPL {
 		owlAPI.startReasoner();
 		owlAPI.isConsistent();
 		
-		CHEMSIM chemSim = new CHEMSIM();
-		chemSim.simulateControlLogic();
+		owlAPI.addIndividual("Variable", "Test");
+		owlAPI.isConsistent();
+		owlAPI.loadDataPropertyValue("MixerO", "shouldRunFor");
+		// CHEMSIM chemSim = new CHEMSIM();
+		// chemSim.simulateControlLogic();
 	}
 }
