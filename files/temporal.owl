@@ -1,13 +1,44 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://www.semanticweb.org/ezer/ontologies/2021/5/untitled-ontology-52#"
-     xml:base="http://www.semanticweb.org/ezer/ontologies/2021/5/untitled-ontology-52"
+<rdf:RDF xmlns="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#"
+     xml:base="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:temporal="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#">
-    <owl:Ontology rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl"/>
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#">
+    <owl:Ontology rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled -->
+
+    <owl:AnnotationProperty rdf:about="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+    
+
+
+    <!-- http://www.w3.org/2003/11/swrlb#args -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/11/swrlb#args"/>
+    
+
+
+    <!-- http://www.w3.org/2003/11/swrlb#minArgs -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/11/swrlb#minArgs"/>
     
 
 
@@ -22,48 +53,30 @@
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#runTogetherWith -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasGranularity -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#runTogetherWith">
-        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <owl:ObjectProperty rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasGranularity">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidTime"/>
+        <rdfs:range rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Granularity"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldNotRunTogetherWith -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasValidTime -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldNotRunTogetherWith">
-        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    <owl:ObjectProperty rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasValidTime">
+        <rdfs:domain rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ExtendedProposition"/>
+        <rdfs:range rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidTime"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunAfter -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#shouldRunFor -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunAfter">
-        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
-        <owl:inverseOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunBefore"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunBefore -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunBefore">
-        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunTogether -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunTogether">
-        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <owl:ObjectProperty rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#shouldRunFor">
+        <rdfs:domain rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ExtendedProposition"/>
+        <rdfs:range rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidTime"/>
     </owl:ObjectProperty>
     
 
@@ -79,28 +92,61 @@
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#runTogetherFor -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#enabledStatus -->
 
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#runTogetherFor">
+    <owl:DatatypeProperty rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#enabledStatus">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#UserInput"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasFinishTime -->
+
+    <owl:DatatypeProperty rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasFinishTime">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidPeriod"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldBeEnabledFor -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasStartTime -->
 
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldBeEnabledFor">
-        <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunFor"/>
-        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    <owl:DatatypeProperty rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasStartTime">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidPeriod"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunFor -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasTime -->
 
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunFor">
+    <owl:DatatypeProperty rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasTime">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidInstant"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#isValid -->
+
+    <owl:DatatypeProperty rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#isValid">
+        <rdfs:domain rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Rules"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#runningStatus -->
+
+    <owl:DatatypeProperty rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#runningStatus">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Component"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
     </owl:DatatypeProperty>
     
 
@@ -116,114 +162,112 @@
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Component -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Component -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Component">
-        <rdfs:subClassOf>
+    <owl:Class rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Component">
+        <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunTogether"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelation"/>
+                <owl:onProperty rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#shouldRunFor"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidPeriod"/>
             </owl:Restriction>
-        </rdfs:subClassOf>
-        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Program"/>
-        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelation"/>
-        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Variable"/>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ExtendedProposition"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#EnvironmentalVariable -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Entity -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#EnvironmentalVariable">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Variable"/>
+    <owl:Class rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Entity"/>
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ExtendedProposition -->
+
+    <owl:Class rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ExtendedProposition">
+        <rdfs:subClassOf rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Proposition"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#InputVariable -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Flush -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#InputVariable">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Variable"/>
+    <owl:Class rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Flush">
+        <rdfs:subClassOf rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Pump"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Mixer -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Granularity -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Mixer">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Component"/>
+    <owl:Class rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Granularity">
+        <rdfs:subClassOf rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Entity"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#OutputVariable -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Mixer -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#OutputVariable">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Variable"/>
+    <owl:Class rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Mixer">
+        <rdfs:subClassOf rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Component"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#PLC -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Proposition -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#PLC"/>
-    
-
-
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Program -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Program"/>
-    
-
-
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#ProgramVariable -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#ProgramVariable">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Variable"/>
+    <owl:Class rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Proposition">
+        <rdfs:subClassOf rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Entity"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Pump -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Pump -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Pump">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Component"/>
+    <owl:Class rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Pump">
+        <rdfs:subClassOf rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Component"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelation -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Rules -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelation">
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#runTogetherWith"/>
-                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Component"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#runTogetherFor"/>
-                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdfs:subClassOf>
+    <owl:Class rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Rules">
+        <rdfs:subClassOf rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Entity"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#UserInputVariable -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#UserInput -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#UserInputVariable">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Variable"/>
+    <owl:Class rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#UserInput">
+        <rdfs:subClassOf rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ExtendedProposition"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Variable -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidInstant -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Variable"/>
+    <owl:Class rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidInstant">
+        <rdfs:subClassOf rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidTime"/>
+    </owl:Class>
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidPeriod -->
+
+    <owl:Class rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidPeriod">
+        <rdfs:subClassOf rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidTime"/>
+    </owl:Class>
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidTime -->
+
+    <owl:Class rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidTime">
+        <rdfs:subClassOf rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Entity"/>
+    </owl:Class>
     
 
 
@@ -238,138 +282,737 @@
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#EmergencyFlush -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Days -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#EmergencyFlush">
-        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Pump"/>
-        <temporal:shouldRunFor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</temporal:shouldRunFor>
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Days">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Granularity"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#EmergencyStop -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#EmergencyFlush -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#EmergencyStop">
-        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#UserInputVariable"/>
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#EmergencyFlush">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Flush"/>
+        <shouldRunFor rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPEF"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump1 -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#EmergencyStop -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump1">
-        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Pump"/>
-        <temporal:shouldRunFor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</temporal:shouldRunFor>
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#EmergencyStop">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#UserInput"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump2 -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Hours -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump2">
-        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Pump"/>
-        <temporal:shouldRunFor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</temporal:shouldRunFor>
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Hours">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Granularity"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump3 -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#IntakePump1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump3">
-        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Pump"/>
-        <temporal:shouldRunFor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</temporal:shouldRunFor>
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#IntakePump1">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Pump"/>
+        <shouldRunFor rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPIP1"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#MixerO -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#IntakePump2 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#MixerO">
-        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Mixer"/>
-        <temporal:shouldNotRunTogetherWith rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#EmergencyFlush"/>
-        <temporal:shouldRunAfter rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump1"/>
-        <temporal:shouldRunBefore rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#OuttakePump"/>
-        <temporal:shouldRunTogether rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelationMIP2"/>
-        <temporal:shouldRunTogether rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelationMIP3"/>
-        <temporal:shouldRunFor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</temporal:shouldRunFor>
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#IntakePump2">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Pump"/>
+        <shouldRunFor rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPIP2"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#OuttakePump -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#IntakePump3 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#OuttakePump">
-        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Pump"/>
-        <temporal:shouldRunFor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</temporal:shouldRunFor>
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#IntakePump3">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Pump"/>
+        <shouldRunFor rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPIP3"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunIntakePump1 -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Milliseconds -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunIntakePump1">
-        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#ProgramVariable"/>
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Milliseconds">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Granularity"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunIntakePump2 -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Minutes -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunIntakePump2">
-        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#ProgramVariable"/>
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Minutes">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Granularity"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunIntakePump3 -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#MixerO -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunIntakePump3">
-        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#ProgramVariable"/>
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#MixerO">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Mixer"/>
+        <shouldRunFor rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPM"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunMixer -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Months -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunMixer">
-        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#ProgramVariable"/>
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Months">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Granularity"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunOuttakePump -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#OuttakePump -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunOuttakePump">
-        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#ProgramVariable"/>
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#OuttakePump">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Pump"/>
+        <shouldRunFor rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPOP"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunProcess -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#R1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunProcess">
-        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#UserInputVariable"/>
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#R1">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Rules"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelationMIP2 -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#R2 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelationMIP2">
-        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelation"/>
-        <temporal:runTogetherWith rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump2"/>
-        <temporal:runTogetherFor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</temporal:runTogetherFor>
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#R2">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Rules"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelationMIP3 -->
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#R3 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelationMIP3">
-        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelation"/>
-        <temporal:runTogetherWith rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump3"/>
-        <temporal:runTogetherFor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</temporal:runTogetherFor>
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#R3">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Rules"/>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#R4 -->
+
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#R4">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Rules"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#RunProcess -->
+
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#RunProcess">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#UserInput"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Seconds -->
+
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Seconds">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Granularity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPEF -->
+
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPEF">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidPeriod"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPIP1 -->
+
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPIP1">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidPeriod"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPIP2 -->
+
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPIP2">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidPeriod"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPIP3 -->
+
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPIP3">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidPeriod"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPM -->
+
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPM">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidPeriod"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPOP -->
+
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#VPOP">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidPeriod"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Years -->
+
+    <owl:NamedIndividual rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Years">
+        <rdf:type rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Granularity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#before">
+        <swrlb:minArgs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</swrlb:minArgs>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#duration">
+        <swrlb:args rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</swrlb:args>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vp">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#st">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ft">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Seconds"/>
+    <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vpi">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#sti">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">S2</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Component"/>
+                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#MixerO"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#shouldRunFor"/>
+                                <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#MixerO"/>
+                                <swrl:argument2 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vp"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidPeriod"/>
+                                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vp"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasStartTime"/>
+                                                <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vp"/>
+                                                <swrl:argument2 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#st"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasFinishTime"/>
+                                                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vp"/>
+                                                        <swrl:argument2 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ft"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                                                <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#duration"/>
+                                                                <swrl:arguments>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</rdf:first>
+                                                                        <rdf:rest rdf:parseType="Collection">
+                                                                            <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#st"/>
+                                                                            <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ft"/>
+                                                                            <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Seconds"/>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </swrl:arguments>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#isValid"/>
+                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#R2"/>
+                        <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrl:argument2>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Intakepump should run before the Mixer</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">S4</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Pump"/>
+                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#IntakePump1"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#shouldRunFor"/>
+                                <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#IntakePump1"/>
+                                <swrl:argument2 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vpi"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidPeriod"/>
+                                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vpi"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasStartTime"/>
+                                                <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vpi"/>
+                                                <swrl:argument2 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#sti"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                                        <swrl:classPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Mixer"/>
+                                                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#MixerO"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                                <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#shouldRunFor"/>
+                                                                <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#MixerO"/>
+                                                                <swrl:argument2 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vp"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                                                        <swrl:classPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidPeriod"/>
+                                                                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vp"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasStartTime"/>
+                                                                                <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vp"/>
+                                                                                <swrl:argument2 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#st"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                                <rdf:first>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                                                                        <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#after"/>
+                                                                                        <swrl:arguments rdf:parseType="Collection">
+                                                                                            <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#sti"/>
+                                                                                            <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#st"/>
+                                                                                        </swrl:arguments>
+                                                                                    </rdf:Description>
+                                                                                </rdf:first>
+                                                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#isValid"/>
+                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#R4"/>
+                        <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrl:argument2>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Intakepump should run before the Mixer</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">S3</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Pump"/>
+                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#IntakePump1"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#shouldRunFor"/>
+                                <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#IntakePump1"/>
+                                <swrl:argument2 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vpi"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidPeriod"/>
+                                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vpi"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasStartTime"/>
+                                                <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vpi"/>
+                                                <swrl:argument2 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#sti"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                                        <swrl:classPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Mixer"/>
+                                                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#MixerO"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                                <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#shouldRunFor"/>
+                                                                <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#MixerO"/>
+                                                                <swrl:argument2 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vp"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                                                        <swrl:classPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidPeriod"/>
+                                                                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vp"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasStartTime"/>
+                                                                                <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vp"/>
+                                                                                <swrl:argument2 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#st"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                                <rdf:first>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                                                                        <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#before"/>
+                                                                                        <swrl:arguments rdf:parseType="Collection">
+                                                                                            <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#sti"/>
+                                                                                            <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#st"/>
+                                                                                        </swrl:arguments>
+                                                                                    </rdf:Description>
+                                                                                </rdf:first>
+                                                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#isValid"/>
+                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#R3"/>
+                        <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrl:argument2>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">S1</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Pump"/>
+                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#IntakePump1"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#shouldRunFor"/>
+                                <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#IntakePump1"/>
+                                <swrl:argument2 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vp"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ValidPeriod"/>
+                                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vp"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasStartTime"/>
+                                                <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vp"/>
+                                                <swrl:argument2 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#st"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#hasFinishTime"/>
+                                                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#vp"/>
+                                                        <swrl:argument2 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ft"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                                                <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#duration"/>
+                                                                <swrl:arguments>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</rdf:first>
+                                                                        <rdf:rest rdf:parseType="Collection">
+                                                                            <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#st"/>
+                                                                            <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#ft"/>
+                                                                            <rdf:Description rdf:about="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#Seconds"/>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </swrl:arguments>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#isValid"/>
+                        <swrl:argument1 rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.3/temporal.owl#R1"/>
+                        <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrl:argument2>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
 </rdf:RDF>
 
 
