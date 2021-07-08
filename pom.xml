@@ -381,6 +381,16 @@
     	<artifactId>owlexplanation</artifactId>
     	<version>1.1.2</version>
     </dependency>
+	<dependency>
+    	<groupId>com.github.galigator.openllet</groupId>
+    	<artifactId>openllet-owlapi</artifactId>
+    	<version>2.6.5</version>
+	</dependency>
+	<dependency>
+		<groupId>edu.stanford.swrl</groupId>
+		<artifactId>swrlapi-drools-engine</artifactId>
+		<version>1.1.4</version>
+	</dependency>
   </dependencies>
   <properties>
     <inherited.rdf4j.version>${rdf4j.version}</inherited.rdf4j.version>

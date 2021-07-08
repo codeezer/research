@@ -1,0 +1,378 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/ezer/ontologies/2021/5/untitled-ontology-52#"
+     xml:base="http://www.semanticweb.org/ezer/ontologies/2021/5/untitled-ontology-52"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:temporal="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/chemicalProcess.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#runTogetherWith -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#runTogetherWith">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldNotRunTogetherWith -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldNotRunTogetherWith">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunAfter -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunAfter">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunBefore"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunBefore -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunBefore">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunTogether -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunTogether">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#runTogetherFor -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#runTogetherFor">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldBeEnabledFor -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldBeEnabledFor">
+        <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunFor"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunFor -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunFor">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Component -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Component">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#shouldRunTogether"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Program"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelation"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Variable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#EnvironmentalVariable -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#EnvironmentalVariable">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Variable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#InputVariable -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#InputVariable">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Variable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Mixer -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Mixer">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Component"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#OutputVariable -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#OutputVariable">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Variable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#PLC -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#PLC"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Program -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Program"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#ProgramVariable -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#ProgramVariable">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Variable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Pump -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Pump">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Component"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelation">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#runTogetherWith"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Component"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#runTogetherFor"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#UserInputVariable -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#UserInputVariable">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Variable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Variable -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Variable"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#EmergencyFlush -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#EmergencyFlush">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Pump"/>
+        <temporal:shouldRunFor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</temporal:shouldRunFor>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#EmergencyStop -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#EmergencyStop">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#UserInputVariable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Pump"/>
+        <temporal:shouldRunFor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</temporal:shouldRunFor>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Pump"/>
+        <temporal:shouldRunFor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</temporal:shouldRunFor>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Pump"/>
+        <temporal:shouldRunFor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</temporal:shouldRunFor>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#MixerO -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#MixerO">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Mixer"/>
+        <temporal:shouldNotRunTogetherWith rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#EmergencyFlush"/>
+        <temporal:shouldRunAfter rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump1"/>
+        <temporal:shouldRunBefore rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#OuttakePump"/>
+        <temporal:shouldRunTogether rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelationMIP2"/>
+        <temporal:shouldRunTogether rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelationMIP3"/>
+        <temporal:shouldRunFor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</temporal:shouldRunFor>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#OuttakePump -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#OuttakePump">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#Pump"/>
+        <temporal:shouldRunFor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</temporal:shouldRunFor>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunIntakePump1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunIntakePump1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#ProgramVariable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunIntakePump2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunIntakePump2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#ProgramVariable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunIntakePump3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunIntakePump3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#ProgramVariable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunMixer -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunMixer">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#ProgramVariable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunOuttakePump -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunOuttakePump">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#ProgramVariable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunProcess -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunProcess">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#UserInputVariable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelationMIP2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelationMIP2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelation"/>
+        <temporal:runTogetherWith rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump2"/>
+        <temporal:runTogetherFor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</temporal:runTogetherFor>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelationMIP3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelationMIP3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#RunTogetherRelation"/>
+        <temporal:runTogetherWith rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/5/temporal.owl#IntakePump3"/>
+        <temporal:runTogetherFor rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</temporal:runTogetherFor>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

@@ -41,9 +41,8 @@ public class CHEMSIM {
 		int runFlag = 0;
 		
 		for (int i = 0; i < N; i++) {
-			RunProcess = random.nextBoolean();
-			EmergencyStop = random.nextBoolean();
-			
+			// RunProcess = random.nextBoolean();
+			// EmergencyStop = random.nextBoolean();
 			
 			if (i==attackTime) {
 				System.out.println("Attack injected at time: " + attackTime);
@@ -84,7 +83,7 @@ public class CHEMSIM {
 				}
 				runFlag++;
 			}
-			printComponentsStatus(""+i);
+			// printComponentsStatus(""+i);
 			
 			if (RunMixer == 1 && EmergencyFlush == 1) {
 				System.out.println("Violation 1!");

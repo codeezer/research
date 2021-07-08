@@ -3,7 +3,6 @@ package us.bsu.cs;
 import java.io.File;
 import java.util.ArrayList;
 
-import org.mockito.internal.stubbing.answers.Returns;
 import org.semanticweb.HermiT.ReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
@@ -113,6 +112,24 @@ public class OWLAPI {
 		}
 	}
 	
+	public ArrayList<OWLIndividual> loadObjectPropertyValue(OWLIndividual owlIndividual, OWLObjectProperty owlObjectProperty) {
+		ArrayList<OWLIndividual> objectPropertiesValues = new ArrayList<OWLIndividual>();
+		EntitySearcher.getObjectPropertyValues(owlIndividual, owlObjectProperty, ontology).forEach(objectPropertiesValues::add);
+		return objectPropertiesValues;
+	}
+	
+	public ArrayList<OWLIndividual> loadObjectPropertyValue(String owlIndividualS, String owlObjectPropertyS) {
+		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(ONT_IRI + "#" + owlIndividualS);
+		OWLObjectProperty owlObjectProperty = dataFactory.getOWLObjectProperty(ONT_IRI + "#" + owlObjectPropertyS);
+		return loadObjectPropertyValue(owlIndividual, owlObjectProperty);
+	}
+	
+	public void printObjectPropertyValue(String owlIndividualS, String owlObjectPropertyS) {
+		for (OWLIndividual owlIndividual: loadObjectPropertyValue(owlIndividualS, owlObjectPropertyS)) {
+			System.out.println(owlIndividual.asOWLNamedIndividual().getIRI().getShortForm());
+		}
+	}
+	
 	public void startReasoner() {
 		reasoner = reasonerFactory.createReasoner(ontology);
 	}
@@ -139,9 +156,6 @@ public class OWLAPI {
 		OWLClass owlClass = dataFactory.getOWLClass(ONT_IRI + "#" + owlClassS);
 		addIndividual(owlClass, owlIndividualS);
 	}
-	
-	
-	
 	
 	public void saveOntology() throws OWLOntologyStorageException {
 		ontManager.saveOntology(ontology);
