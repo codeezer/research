@@ -2,9 +2,8 @@ package us.bsu.cs;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
+import org.mockito.internal.stubbing.answers.Returns;
 import org.semanticweb.HermiT.ReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
@@ -21,6 +20,7 @@ import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
+
 
 public class OWLAPI {
 	static File ONT_FILE;
@@ -47,50 +47,70 @@ public class OWLAPI {
 		}
 	}
 	
-	public void loadClasses() {
+	public ArrayList<OWLClass> loadClasses() {
 		ArrayList<OWLClass> classes = new ArrayList<OWLClass>();
 		ontology.getClassesInSignature().forEach(classes::add);
-		
-		for (OWLClass owlClass: classes) {
+		return classes;
+	}
+	
+	public void printClasses() {
+		for (OWLClass owlClass: loadClasses()) {
 			System.out.println(owlClass);
 		}
 	}
 	
-	public void loadIndividuals() {
+	public ArrayList<OWLIndividual> loadIndividuals() {
 		ArrayList<OWLIndividual> individuals = new ArrayList<OWLIndividual>();
 		ontology.getIndividualsInSignature().forEach(individuals::add);
-		
-		for (OWLIndividual owlIndividual: individuals) {
+		return individuals;
+	}
+	
+	public void printIndividuals() {
+		for (OWLIndividual owlIndividual: loadIndividuals()) {
 			System.out.println(owlIndividual);
 		}
 	}
 	
-	public void loadDataProperty() {
+	public ArrayList<OWLDataProperty> loadDataProperties() {
 		ArrayList<OWLDataProperty> dataProperties = new ArrayList<OWLDataProperty>();
 		ontology.getDataPropertiesInSignature().forEach(dataProperties::add);
-		
-		for (OWLDataProperty owlDataProperty: dataProperties) {
+		return dataProperties;
+	}
+	
+	public void printDataProperties() {
+		for (OWLDataProperty owlDataProperty: loadDataProperties()) {
 			System.out.println(owlDataProperty);
 		}
 	}
 	
-	public void loadObjectProperty() {
-		ArrayList<OWLObjectProperty> ObjectProperties = new ArrayList<OWLObjectProperty>();
-		ontology.getObjectPropertiesInSignature().forEach(ObjectProperties::add);
-		
-		for (OWLObjectProperty owlObjectProperty: ObjectProperties) {
+	public ArrayList<OWLObjectProperty> loadObjectProperties() {
+		ArrayList<OWLObjectProperty> objectProperties = new ArrayList<OWLObjectProperty>();
+		ontology.getObjectPropertiesInSignature().forEach(objectProperties::add);
+		return objectProperties;
+	}
+	
+	public void printObjectProperties() {
+		for (OWLObjectProperty owlObjectProperty: loadObjectProperties()) {
 			System.out.println(owlObjectProperty);
 		}
 	}
 	
-	public void loadDataPropertyValue(OWLIndividual owlIndividual, OWLDataProperty owlDataProperty) {
-		EntitySearcher.getDataPropertyValues(owlIndividual, owlDataProperty, ontology).forEach(System.out::println);
+	public ArrayList<OWLLiteral> loadDataPropertyValue(OWLIndividual owlIndividual, OWLDataProperty owlDataProperty) {
+		ArrayList<OWLLiteral> dataPropertiesLiteralValues = new ArrayList<OWLLiteral>();
+		EntitySearcher.getDataPropertyValues(owlIndividual, owlDataProperty, ontology).forEach(dataPropertiesLiteralValues::add);
+		return dataPropertiesLiteralValues;
 	}
 	
-	public void loadDataPropertyValue(String owlIndividualS, String owlDataPropertyS) {
+	public ArrayList<OWLLiteral> loadDataPropertyValue(String owlIndividualS, String owlDataPropertyS) {
 		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(ONT_IRI + "#" + owlIndividualS);
 		OWLDataProperty owlDataProperty = dataFactory.getOWLDataProperty(ONT_IRI + "#" + owlDataPropertyS);
-		loadDataPropertyValue(owlIndividual, owlDataProperty);
+		return loadDataPropertyValue(owlIndividual, owlDataProperty);
+	}
+	
+	public void printDataPropertyValue(String owlIndividualS, String owlDataPropertyS) {
+		for (OWLLiteral owlLiteralValue: loadDataPropertyValue(owlIndividualS, owlDataPropertyS)) {
+			System.out.println(owlLiteralValue.getLiteral());
+		}
 	}
 	
 	public void startReasoner() {

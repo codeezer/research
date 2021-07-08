@@ -12,6 +12,8 @@ public class CHEMSIM {
 	
 	public static void printComponentsStatus(String title) {
 		System.out.println("-----" + title + "-----");
+		System.out.println("RunProcess: " + RunProcess);
+		System.out.println("EmergencyStop: " + EmergencyStop);
 		System.out.println("RunIntakePump1: " + RunIntakePump1);
 		System.out.println("RunIntakePump2: " + RunIntakePump2);
 		System.out.println("RunIntakePump3: " + RunIntakePump3);
@@ -41,6 +43,7 @@ public class CHEMSIM {
 		for (int i = 0; i < N; i++) {
 			RunProcess = random.nextBoolean();
 			EmergencyStop = random.nextBoolean();
+			
 			
 			if (i==attackTime) {
 				System.out.println("Attack injected at time: " + attackTime);
@@ -81,7 +84,9 @@ public class CHEMSIM {
 				}
 				runFlag++;
 			}
-			if (RunMixer == 1 && EmergencyFlush == 1 ) {
+			printComponentsStatus(""+i);
+			
+			if (RunMixer == 1 && EmergencyFlush == 1) {
 				System.out.println("Violation 1!");
 				printComponentsStatus("");
 			}
