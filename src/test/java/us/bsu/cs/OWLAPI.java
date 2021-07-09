@@ -107,10 +107,8 @@ public class OWLAPI {
 	}
 	
 	public ArrayList<OWLLiteral> loadDataPropertyValue(String owlIndividualS, String owlDataPropertyS) {
-		// OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(ONT_IRI + "#" + owlIndividualS);
 		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(IRI.create(ONT_IRI + "#" + owlIndividualS));
 		
-		// OWLDataProperty owlDataProperty = dataFactory.getOWLDataProperty(ONT_IRI + "#" + owlDataPropertyS);
 		OWLDataProperty owlDataProperty = dataFactory.getOWLDataProperty(IRI.create(ONT_IRI + "#" + owlDataPropertyS));
 		return loadDataPropertyValue(owlIndividual, owlDataProperty);
 	}
@@ -127,17 +125,17 @@ public class OWLAPI {
 		return objectPropertiesValues;
 	}
 	
-//	public ArrayList<OWLIndividual> loadObjectPropertyValue(String owlIndividualS, String owlObjectPropertyS) {
-//		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(ONT_IRI + "#" + owlIndividualS);
-//		OWLObjectProperty owlObjectProperty = dataFactory.getOWLObjectProperty(ONT_IRI + "#" + owlObjectPropertyS);
-//		return loadObjectPropertyValue(owlIndividual, owlObjectProperty);
-//	}
+	public ArrayList<OWLIndividual> loadObjectPropertyValue(String owlIndividualS, String owlObjectPropertyS) {
+		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(IRI.create(ONT_IRI + "#" + owlIndividualS));
+		OWLObjectProperty owlObjectProperty = dataFactory.getOWLObjectProperty(IRI.create(ONT_IRI + "#" + owlObjectPropertyS));
+		return loadObjectPropertyValue(owlIndividual, owlObjectProperty);
+	}
 	
-//	public void printObjectPropertyValue(String owlIndividualS, String owlObjectPropertyS) {
-//		for (OWLIndividual owlIndividual: loadObjectPropertyValue(owlIndividualS, owlObjectPropertyS)) {
-//			System.out.println(owlIndividual.asOWLNamedIndividual().getIRI().getShortForm());
-//		}
-//	}
+	public void printObjectPropertyValue(String owlIndividualS, String owlObjectPropertyS) {
+		for (OWLIndividual owlIndividual: loadObjectPropertyValue(owlIndividualS, owlObjectPropertyS)) {
+			System.out.println(owlIndividual.asOWLNamedIndividual().getIRI().getShortForm());
+		}
+	}
 	
 	public void startReasoner() {
 		reasoner = reasonerFactory.createReasoner(ontology);
@@ -160,15 +158,15 @@ public class OWLAPI {
 		ontManager.addAxiom(ontology, classAssertionAxiom);
 	}
 	
-//	public void addIndividual(OWLClass owlClass, String owlIndividualS) {
-//		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(ONT_IRI + "#" + owlIndividualS);
-//		addIndividual(owlClass, owlIndividual);
-//	}
-//	
-//	public void addIndividual(String owlClassS, String owlIndividualS) {
-//		OWLClass owlClass = dataFactory.getOWLClass(ONT_IRI + "#" + owlClassS);
-//		addIndividual(owlClass, owlIndividualS);
-//	}
+	public void addIndividual(OWLClass owlClass, String owlIndividualS) {
+		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(IRI.create(ONT_IRI + "#" + owlIndividualS));
+		addIndividual(owlClass, owlIndividual);
+	}
+	
+	public void addIndividual(String owlClassS, String owlIndividualS) {
+		OWLClass owlClass = dataFactory.getOWLClass(IRI.create(ONT_IRI + "#" + owlClassS));
+		addIndividual(owlClass, owlIndividualS);
+	}
 	
 	public void saveOntology() throws OWLOntologyStorageException {
 		ontManager.saveOntology(ontology);
