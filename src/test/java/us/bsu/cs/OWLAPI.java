@@ -183,7 +183,6 @@ public class OWLAPI {
 	}
 	// ------------------------------ REASONER END --------------------------------------
 	
-	
 	// ------------------------------ SWRL BEGIN --------------------------------------
 	public void startSWRLRuleEngine() {
 		swrlRuleEngine = SWRLAPIFactory.createSWRLRuleEngine(ontology);
