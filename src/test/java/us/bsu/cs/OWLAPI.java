@@ -1,19 +1,24 @@
 package us.bsu.cs;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
-import org.semanticweb.HermiT.ReasonerFactory;
+// import org.semanticweb.HermiT.ReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 import org.semanticweb.owlapi.search.EntitySearcher;
+import org.semanticweb.owlapi.vocab.OWL2Datatype;
 import org.swrlapi.core.SWRLAPIRule;
 import org.swrlapi.core.SWRLRuleEngine;
 import org.swrlapi.exceptions.SWRLBuiltInException;
@@ -21,20 +26,26 @@ import org.swrlapi.factory.SWRLAPIFactory;
 import org.swrlapi.parser.SWRLParseException;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDataProperty;
+import org.semanticweb.owlapi.model.OWLDataPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
+import org.semanticweb.owlapi.model.OWLObjectPropertyAssertionAxiom;
+
+// import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
+import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
 
 
 public class OWLAPI {
-	static File ONT_FILE;
-	static IRI ONT_IRI;
-	static OWLOntology ontology;
-	static OWLOntologyManager ontManager;
-	static OWLDataFactory dataFactory;
-	static OWLReasonerFactory reasonerFactory = new ReasonerFactory();
-	static OWLReasoner reasoner;
+	File ONT_FILE;
+	IRI ONT_IRI;
+	OWLOntology ontology;
+	OWLOntologyManager ontManager;
+	OWLDataFactory dataFactory;
+	OWLReasonerFactory reasonerFactory = new PelletReasonerFactory();
+	OWLReasoner reasoner;
 	SWRLRuleEngine swrlRuleEngine;
+	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 	
 	public OWLAPI(String owlFilePath) {
 		ONT_FILE = new File(owlFilePath);
@@ -48,6 +59,14 @@ public class OWLAPI {
 			ONT_IRI = ontology.getOntologyID().getOntologyIRI().get();
 			dataFactory = ontManager.getOWLDataFactory();
 		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	public void flushAndReload() {
+		try {
+			ontManager.loadOntologyFromOntologyDocument(ONT_FILE);
+		} catch (OWLOntologyCreationException e) {
 			System.out.println(e);
 		}
 	}
@@ -107,10 +126,7 @@ public class OWLAPI {
 	}
 	
 	public ArrayList<OWLLiteral> loadDataPropertyValue(String owlIndividualS, String owlDataPropertyS) {
-		// OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(ONT_IRI + "#" + owlIndividualS);
 		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(IRI.create(ONT_IRI + "#" + owlIndividualS));
-		
-		// OWLDataProperty owlDataProperty = dataFactory.getOWLDataProperty(ONT_IRI + "#" + owlDataPropertyS);
 		OWLDataProperty owlDataProperty = dataFactory.getOWLDataProperty(IRI.create(ONT_IRI + "#" + owlDataPropertyS));
 		return loadDataPropertyValue(owlIndividual, owlDataProperty);
 	}
@@ -127,20 +143,22 @@ public class OWLAPI {
 		return objectPropertiesValues;
 	}
 	
-//	public ArrayList<OWLIndividual> loadObjectPropertyValue(String owlIndividualS, String owlObjectPropertyS) {
-//		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(ONT_IRI + "#" + owlIndividualS);
-//		OWLObjectProperty owlObjectProperty = dataFactory.getOWLObjectProperty(ONT_IRI + "#" + owlObjectPropertyS);
-//		return loadObjectPropertyValue(owlIndividual, owlObjectProperty);
-//	}
+	public ArrayList<OWLIndividual> loadObjectPropertyValue(String owlIndividualS, String owlObjectPropertyS) {
+		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(IRI.create(ONT_IRI + "#" + owlIndividualS));
+		OWLObjectProperty owlObjectProperty = dataFactory.getOWLObjectProperty(IRI.create(ONT_IRI + "#" + owlObjectPropertyS));
+		return loadObjectPropertyValue(owlIndividual, owlObjectProperty);
+	}
 	
-//	public void printObjectPropertyValue(String owlIndividualS, String owlObjectPropertyS) {
-//		for (OWLIndividual owlIndividual: loadObjectPropertyValue(owlIndividualS, owlObjectPropertyS)) {
-//			System.out.println(owlIndividual.asOWLNamedIndividual().getIRI().getShortForm());
-//		}
-//	}
+	public void printObjectPropertyValue(String owlIndividualS, String owlObjectPropertyS) {
+		for (OWLIndividual owlIndividual: loadObjectPropertyValue(owlIndividualS, owlObjectPropertyS)) {
+			System.out.println(owlIndividual.asOWLNamedIndividual().getIRI().getShortForm());
+		}
+	}
 	
+	// ------------------------------ REASONER BEGIN --------------------------------------
 	public void startReasoner() {
-		reasoner = reasonerFactory.createReasoner(ontology);
+		// reasoner = reasonerFactory.createReasoner(ontology);
+		reasoner = PelletReasonerFactory.getInstance().createReasoner(ontology);
 	}
 	
 	public void stopReasoner() {
@@ -155,31 +173,26 @@ public class OWLAPI {
 		System.out.println("Consistent Ontology: " + isConsistent());
 	}
 	
-	public void addIndividual(OWLClass owlClass, OWLIndividual owlIndividual) {
-		OWLClassAssertionAxiom classAssertionAxiom = dataFactory.getOWLClassAssertionAxiom(owlClass, owlIndividual);
-		ontManager.addAxiom(ontology, classAssertionAxiom);
+	public void provideExplanations() {
+		// InconsistentOntologyExplanationGeneratorFactory f = 
+		//		new InconsistentOntologyExplanationGeneratorFactory(reasonerFactory, 0);
+		// ExplanationGenerator<OWLAxiom> gen = f.createExplanationGenerator(ontology);
+		// OWLAxiom entailment = dataFactory.getOWLSubClassOfAxiom(dataFactory.getOWLThing(), dataFactory.getOWLNothing());
+		// System.out.println(entailment);
+		// gen.getExplanations(entailment);
 	}
+	// ------------------------------ REASONER END --------------------------------------
 	
-//	public void addIndividual(OWLClass owlClass, String owlIndividualS) {
-//		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(ONT_IRI + "#" + owlIndividualS);
-//		addIndividual(owlClass, owlIndividual);
-//	}
-//	
-//	public void addIndividual(String owlClassS, String owlIndividualS) {
-//		OWLClass owlClass = dataFactory.getOWLClass(ONT_IRI + "#" + owlClassS);
-//		addIndividual(owlClass, owlIndividualS);
-//	}
 	
-	public void saveOntology() throws OWLOntologyStorageException {
-		ontManager.saveOntology(ontology);
-	}
-	
+	// ------------------------------ SWRL BEGIN --------------------------------------
 	public void startSWRLRuleEngine() {
 		swrlRuleEngine = SWRLAPIFactory.createSWRLRuleEngine(ontology);
 	}
 	
 	public void addSWRLRule(String ruleNameS, String ruleS) {
-		startSWRLRuleEngine();
+		if (! droolRunning()) {
+			startSWRLRuleEngine();
+		}
 		try {
 			SWRLAPIRule swrlRule = swrlRuleEngine.createSWRLRule(ruleNameS, ruleS);
 			System.out.println(swrlRule.getRuleName() + " rule added successfully.");
@@ -190,18 +203,94 @@ public class OWLAPI {
 		}
 	}
 	
-	public void startDrool() {
-		swrlRuleEngine.infer();
+	public boolean droolRunning() {
+		try {
+			swrlRuleEngine.getRuleEngineName();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
+	public void startInferring() {
+		if (! droolRunning()) {
+			startSWRLRuleEngine();
+		}
+		swrlRuleEngine.infer();
+	}
+	// ------------------------------ SWRL END --------------------------------------
 	
-	public void provideExplanations() {
-		// InconsistentOntologyExplanationGeneratorFactory f = 
-		//		new InconsistentOntologyExplanationGeneratorFactory(reasonerFactory, 0);
-		// ExplanationGenerator<OWLAxiom> gen = f.createExplanationGenerator(ontology);
-		// OWLAxiom entailment = dataFactory.getOWLSubClassOfAxiom(dataFactory.getOWLThing(), dataFactory.getOWLNothing());
-		// System.out.println(entailment);
-		// gen.getExplanations(entailment);
+	// ------------------------------ UPDATE ONTOLOGY --------------------------------------
+	public void addIndividual(OWLClass owlClass, OWLIndividual owlIndividual) {
+		OWLClassAssertionAxiom classAssertionAxiom = dataFactory.getOWLClassAssertionAxiom(owlClass, owlIndividual);
+		ontManager.addAxiom(ontology, classAssertionAxiom);
+	}
+	
+	public void addIndividual(OWLClass owlClass, String owlIndividualS) {
+		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(IRI.create(ONT_IRI + "#" + owlIndividualS));
+		addIndividual(owlClass, owlIndividual);
+	}
+	
+	public void addIndividual(String owlClassS, String owlIndividualS) {
+		OWLClass owlClass = dataFactory.getOWLClass(IRI.create(ONT_IRI + "#" + owlClassS));
+		addIndividual(owlClass, owlIndividualS);
+	}
+	
+	public void objectPropertyAssertion(OWLIndividual owlIndividual1, OWLObjectProperty owlObjectProperty, OWLIndividual owlIndividual2) {
+		OWLObjectPropertyAssertionAxiom objectPropertyAssertionAxiom = dataFactory.getOWLObjectPropertyAssertionAxiom(owlObjectProperty, owlIndividual1, owlIndividual2);
+		ontManager.addAxiom(ontology, objectPropertyAssertionAxiom);
+	}
+	
+	public void objectPropertyAssertion(String owlIndividual1S, String owlObjectPropertyS, String owlIndividual2S) {
+		OWLIndividual owlIndividual1 = dataFactory.getOWLNamedIndividual(IRI.create(ONT_IRI + "#" + owlIndividual1S));
+		OWLObjectProperty owlObjectProperty = dataFactory.getOWLObjectProperty(IRI.create(ONT_IRI + "#" + owlObjectPropertyS));
+		OWLIndividual owlIndividual2 = dataFactory.getOWLNamedIndividual(IRI.create(ONT_IRI + "#" + owlIndividual2S));
+		objectPropertyAssertion(owlIndividual1, owlObjectProperty, owlIndividual2);
+	}
+	
+	public void dataPropertyAssertion(OWLIndividual owlIndividual, OWLDataProperty owlDataProperty, OWLLiteral owlLiteral) {
+		OWLDataPropertyAssertionAxiom dataPropertyAssertionAxiom = dataFactory.getOWLDataPropertyAssertionAxiom(owlDataProperty, owlIndividual, owlLiteral);
+		ontManager.addAxiom(ontology, dataPropertyAssertionAxiom);
+	}
+	
+	public void dataPropertyAssertion(String owlIndividualS, String owlDataPropertyS, String owlLiteralS) {
+		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(IRI.create(ONT_IRI + "#" + owlIndividualS));
+		OWLDataProperty owlDataProperty = dataFactory.getOWLDataProperty(IRI.create(ONT_IRI + "#" + owlDataPropertyS));
+		OWLLiteral owlLiteral = dataFactory.getOWLLiteral(owlLiteralS);
+		
+		dataPropertyAssertion(owlIndividual, owlDataProperty, owlLiteral);
+	}
+	
+	public void dataPropertyAssertion(String owlIndividualS, String owlDataPropertyS, int owlLiteralI) {
+		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(IRI.create(ONT_IRI + "#" + owlIndividualS));
+		OWLDataProperty owlDataProperty = dataFactory.getOWLDataProperty(IRI.create(ONT_IRI + "#" + owlDataPropertyS));
+		OWLLiteral owlLiteral = dataFactory.getOWLLiteral(owlLiteralI);
+		
+		dataPropertyAssertion(owlIndividual, owlDataProperty, owlLiteral);
+	}
+	
+	public void dataPropertyAssertion(String owlIndividualS, String owlDataPropertyS, boolean owlLiteralB) {
+		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(IRI.create(ONT_IRI + "#" + owlIndividualS));
+		OWLDataProperty owlDataProperty = dataFactory.getOWLDataProperty(IRI.create(ONT_IRI + "#" + owlDataPropertyS));
+		OWLLiteral owlLiteral = dataFactory.getOWLLiteral(owlLiteralB);
+		
+		dataPropertyAssertion(owlIndividual, owlDataProperty, owlLiteral);
+	}
+	
+	public void dataPropertyAssertion(String owlIndividualS, String owlDataPropertyS, Calendar owlLiteralC) {
+		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(IRI.create(ONT_IRI + "#" + owlIndividualS));
+		OWLDataProperty owlDataProperty = dataFactory.getOWLDataProperty(IRI.create(ONT_IRI + "#" + owlDataPropertyS));
+		OWLLiteral owlLiteral = dataFactory.getOWLLiteral(dateFormat.format(owlLiteralC.getTime()), OWL2Datatype.XSD_DATE_TIME);
+		
+		dataPropertyAssertion(owlIndividual, owlDataProperty, owlLiteral);
+	}
+	
+	public void saveOntology() {
+		try {
+			ontManager.saveOntology(ontology);
+		} catch (OWLOntologyStorageException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

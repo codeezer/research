@@ -1,5 +1,6 @@
 package us.bsu.cs;
 
+import java.util.Calendar;
 import java.util.Random;
 
 public class CHEMSIM {
@@ -26,7 +27,7 @@ public class CHEMSIM {
 		RunMixer = 1;
 	}
 	
-	public void simulateControlLogic() {
+	public void simulateControlLogic(OWLAPI owlAPI) {
 		Random random = new Random();
 		
 		RunIntakePump1 = 0; RunIntakePump2 = 0; RunIntakePump3 = 0;
@@ -34,16 +35,17 @@ public class CHEMSIM {
 		
 		RunProcess = random.nextBoolean();
 		EmergencyStop = random.nextBoolean();
-		int N = 1700;
+		
+		int N = 1800;
 		int attackTime = random.nextInt(N);
 		
 		int emergencyFlag = 0;
 		int runFlag = 0;
 		
+		Calendar cal = Calendar.getInstance();
 		for (int i = 0; i < N; i++) {
 			// RunProcess = random.nextBoolean();
 			// EmergencyStop = random.nextBoolean();
-			
 			if (i==attackTime) {
 				System.out.println("Attack injected at time: " + attackTime);
 				injectMixerAttack();
@@ -52,7 +54,9 @@ public class CHEMSIM {
 			if (EmergencyStop) {
 				RunIntakePump1 = 0; RunIntakePump2 = 0; RunIntakePump3 = 0;
 				RunOuttakePump = 0; RunMixer = 0; EmergencyFlush = 0;
-				EmergencyFlush = 1; runFlag = 0;
+				EmergencyFlush = 1; 
+				runFlag = 0;
+				
 				emergencyFlag++;
 				if (emergencyFlag>=5) {
 					EmergencyFlush = 0;
@@ -61,42 +65,56 @@ public class CHEMSIM {
 			else if (RunProcess) {
 				EmergencyFlush = 0; emergencyFlag = 0;
 				
-				if (runFlag<=1) {
+				if (runFlag==0) {
 					RunIntakePump1 = 1;
-				} else if (runFlag<=3) {
+					owlAPI.dataPropertyAssertion("VPIP1", "hasStartTime", cal);
+				} else if (runFlag==2) {
+					// cal.add(Calendar.SECOND, 2);
 					RunIntakePump1 = 0;
+					// owlAPI.dataPropertyAssertion("VPIP1", "hasFinishTime", cal);
 					RunIntakePump2 = 1;
+					// owlAPI.dataPropertyAssertion("VPIP2", "hasStartTime", cal);
 					RunIntakePump3 = 1;
+					// owlAPI.dataPropertyAssertion("VPIP3", "hasStartTime", cal);
 					RunMixer = 1;
-				} else if (runFlag<=5) {
+					// owlAPI.dataPropertyAssertion("VPM", "hasStartTime", cal);
+				} else if (runFlag==6) {
+					// cal.add(Calendar.SECOND, 4);
 					RunIntakePump2 = 0;
-				} else if (runFlag<=7) {
+					// owlAPI.dataPropertyAssertion("VPIP2", "hasFinishTime", cal);
+				} else if (runFlag==8) {
+					// cal.add(Calendar.SECOND, 2);
 					RunIntakePump3 = 0;
-				} else if (runFlag<=11) {
+					// owlAPI.dataPropertyAssertion("VPIP3", "hasFinishTime", cal);
+				} else if (runFlag==12) {
+					// cal.add(Calendar.SECOND, 4);
 					RunMixer = 0;
+					// owlAPI.dataPropertyAssertion("VPM", "hasFinishTime", cal);
 					RunOuttakePump = 1;
-				} else if (runFlag<=16) {
+					// owlAPI.dataPropertyAssertion("VPOP", "hasStartTime", cal);
+				} else if (runFlag==17) {
+					// cal.add(Calendar.SECOND, 5);
 					RunOuttakePump = 0;
-					if (runFlag==16) {
-						runFlag = -1;
-					}
+					// owlAPI.dataPropertyAssertion("VPOP", "hasFinishTime", cal);
+					runFlag = -1;
 				}
+				printComponentsStatus(""+i);
 				runFlag++;
 			}
 			// printComponentsStatus(""+i);
 			
-			if (RunMixer == 1 && EmergencyFlush == 1) {
-				System.out.println("Violation 1!");
-				printComponentsStatus("");
-			}
-			if (EmergencyStop == true && RunMixer == 1) {
-				System.out.println("Violation 2!");
-				printComponentsStatus("");
-			}
-			if (RunMixer == 1 && RunIntakePump1 == 1) {
-				System.out.println("Violation 3!");
-				printComponentsStatus("");
-			}
+//			if (RunMixer == 1 && EmergencyFlush == 1) {
+//				System.out.println("Violation 1!");
+//				printComponentsStatus("");
+//			}
+//			if (EmergencyStop == true && RunMixer == 1) {
+//				System.out.println("Violation 2!");
+//				printComponentsStatus("");
+//			}
+//			if (RunMixer == 1 && RunIntakePump1 == 1) {
+//				System.out.println("Violation 3!");
+//				printComponentsStatus("");
+//			}
 		}
 	}
 }
