@@ -46,7 +46,6 @@ public class OWLAPI {
 	OWLReasoner reasoner;
 	SWRLRuleEngine swrlRuleEngine;
 	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-	
 	public OWLAPI(String owlFilePath) {
 		ONT_FILE = new File(owlFilePath);
 		loadOntology();
@@ -93,6 +92,15 @@ public class OWLAPI {
 		for (OWLIndividual owlIndividual: loadIndividuals()) {
 			System.out.println(owlIndividual);
 		}
+	}
+	
+	public ArrayList<String> getIndividuals(String owlClassS) {
+		OWLClass owlClass = dataFactory.getOWLClass(IRI.create(ONT_IRI + "#" + owlClassS));
+		// ArrayList<OWLIndividual> owlIndividuals = new ArrayList<OWLIndividual>();
+		ArrayList<String> owlIndividualsS = new ArrayList<String>();
+		// EntitySearcher.getIndividuals(owlClass, ontology).forEach(owlIndividuals::add);
+		EntitySearcher.getIndividuals(owlClass, ontology).stream().map(x -> x.asOWLNamedIndividual().getIRI().getFragment()).forEach(owlIndividualsS::add);
+		return owlIndividualsS;
 	}
 	
 	public ArrayList<OWLDataProperty> loadDataProperties() {

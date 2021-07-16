@@ -1,8 +1,7 @@
 package us.bsu.cs;
 
+import java.util.Iterator;
 import java.util.Random;
-
-import org.mvel2.sh.command.basic.Exit;
 
 public class CHEMSIM {
 	int RunIntakePump1, RunIntakePump2, RunIntakePump3, RunOuttakePump, RunMixer, RunEmergencyFlush;
@@ -36,14 +35,12 @@ public class CHEMSIM {
 	
 	public void updateComponentsStatusToOntology(OWLAPI owlAPI) {
 		for (int i = 0; i < componentsName.length; i++) {
-			// System.out.println(componentsName[i] + ": " + "isRunning" + "=" + (componentsStatus[i]==1));
 			if (owlAPI.loadDataPropertyValue(componentsName[i], "isRunning").size()==1) {
 				owlAPI.removeDataProperty(componentsName[i], "isRunning", Boolean.parseBoolean(owlAPI.loadDataPropertyValue(componentsName[i], "isRunning").get(0).getLiteral()));
 			}
 			owlAPI.dataPropertyAssertion(componentsName[i], "isRunning", componentsStatus[i]==1);
 		}
 	}
-	
 	
 	public void injectMixerAttack() {
 		RunMixer = 1;
@@ -58,9 +55,8 @@ public class CHEMSIM {
 		RunProcess = random.nextBoolean();
 		EmergencyStop = random.nextBoolean();
 		
-		int N = 50;
-		// int attackTime = random.nextInt(N);
-		int attackTime = 0;
+		int N = 20;
+		int attackTime = random.nextInt(N);
 		
 		int emergencyFlag = 0;
 		int runFlag = 0;
@@ -69,8 +65,9 @@ public class CHEMSIM {
 			// RunProcess = random.nextBoolean();
 			// EmergencyStop = random.nextBoolean();
 			if (i==attackTime) {
-				System.out.println("Attack injected at time: " + attackTime);
 				injectMixerAttack();
+				System.out.println("RunProcess: " + RunProcess + " | RunEmergencyFlush: " + EmergencyStop);
+				System.out.println("Attack injected at time: " + attackTime);
 			}
 			
 			if (EmergencyStop) {
@@ -108,14 +105,6 @@ public class CHEMSIM {
 				runFlag++;
 			}
 			
-			// if (RunMixer == 1 && RunEmergencyFlush == 1) {
-			//	System.out.println("Violation 1!");
-			//	printComponentsStatus("");
-			//}
-			//if (EmergencyStop == true && RunMixer == 1) {
-			//	System.out.println("Violation 2!");
-			//	printComponentsStatus("");
-			//}
 			setComponentsStatus();
 			updateComponentsStatusToOntology(owlAPI);
 			try {
@@ -126,21 +115,13 @@ public class CHEMSIM {
 			}
 			
 			// Check if R1 has violation
-			printComponentsStatus("");
-			if (owlAPI.loadDataPropertyValue("R1", "isViolated").size()>0) {
-				System.out.println("At time " + runFlag + ": R1" + " isViolated?" + "=");
-				owlAPI.printDataPropertyValue("R1", "isViolated");
+			// printComponentsStatus("");
+			for (String rule : owlAPI.getIndividuals("Rules")) {
+				if (owlAPI.loadDataPropertyValue(rule, "isViolated").size()>0) {
+					System.out.println("At time " + runFlag + ": " + rule + " isViolated?" + "=");
+					owlAPI.printDataPropertyValue(rule, "isViolated");
+				}
 			}
-			
-			/*
-			if (RunMixer == 1 && RunIntakePump1 == 1) {
-				System.out.println("Violation 3!");
-				printComponentsStatus("");
-				System.out.println("IntakePump1: ");
-				owlAPI.printDataPropertyValue("IntakePump1", "isRunning");
-				System.out.println("MixerO: ");
-				owlAPI.printDataPropertyValue("MixerO", "isRunning");
-			}*/
 		}
 	}
 }
