@@ -217,6 +217,8 @@ public class OWLAPI {
 		}
 		swrlRuleEngine.infer();
 	}
+	
+	
 	// ------------------------------ SWRL END --------------------------------------
 	
 	// ------------------------------ UPDATE ONTOLOGY --------------------------------------
@@ -282,6 +284,34 @@ public class OWLAPI {
 		OWLLiteral owlLiteral = dataFactory.getOWLLiteral(dateFormat.format(owlLiteralC.getTime()), OWL2Datatype.XSD_DATE_TIME);
 		
 		dataPropertyAssertion(owlIndividual, owlDataProperty, owlLiteral);
+	}
+	
+	public void removeDataProperty(OWLIndividual owlIndividual, OWLDataProperty owlDataProperty, OWLLiteral owlLiteral) {
+		OWLDataPropertyAssertionAxiom dataPropertyAssertionAxiom = dataFactory.getOWLDataPropertyAssertionAxiom(owlDataProperty, owlIndividual, owlLiteral);
+		ontManager.removeAxiom(ontology, dataPropertyAssertionAxiom);
+	}
+	
+	public void removeDataProperty(String owlIndividualS, String owlDataPropertyS, String owlLiteralS) {
+		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(IRI.create(ONT_IRI + "#" + owlIndividualS));
+		OWLLiteral owlLiteral = dataFactory.getOWLLiteral(owlLiteralS);
+		OWLDataProperty owlDataProperty = dataFactory.getOWLDataProperty(IRI.create(ONT_IRI + "#" + owlDataPropertyS));
+		removeDataProperty(owlIndividual, owlDataProperty, owlLiteral);
+	}
+	
+	public void removeDataProperty(String owlIndividualS, String owlDataPropertyS, int owlLiteralI) {
+		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(IRI.create(ONT_IRI + "#" + owlIndividualS));
+		OWLDataProperty owlDataProperty = dataFactory.getOWLDataProperty(IRI.create(ONT_IRI + "#" + owlDataPropertyS));
+		OWLLiteral owlLiteral = dataFactory.getOWLLiteral(owlLiteralI);
+		
+		removeDataProperty(owlIndividual, owlDataProperty, owlLiteral);
+	}
+	
+	public void removeDataProperty(String owlIndividualS, String owlDataPropertyS, boolean owlLiteralB) {
+		OWLIndividual owlIndividual = dataFactory.getOWLNamedIndividual(IRI.create(ONT_IRI + "#" + owlIndividualS));
+		OWLDataProperty owlDataProperty = dataFactory.getOWLDataProperty(IRI.create(ONT_IRI + "#" + owlDataPropertyS));
+		OWLLiteral owlLiteral = dataFactory.getOWLLiteral(owlLiteralB);
+		
+		removeDataProperty(owlIndividual, owlDataProperty, owlLiteral);
 	}
 	
 	public void saveOntology() {
