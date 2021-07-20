@@ -1,0 +1,376 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#"
+     xml:base="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:chemicalProcess="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#runTogetherWith -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#runTogetherWith">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#shouldNotRunTogetherWith -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#shouldNotRunTogetherWith">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#shouldRunAfter -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#shouldRunAfter">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#shouldRunBefore -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#shouldRunBefore">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#shouldRunTogether -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#shouldRunTogether">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#isRunning -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#isRunning">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Component"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#isViolated -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#isViolated">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Rules"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#runTogetherFor -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#runTogetherFor">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Component"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#shouldBeEnabledFor -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#shouldBeEnabledFor">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#shouldRunFor -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#shouldRunFor">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Component"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Component -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Component"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Mixer -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Mixer">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Component"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#ProgramVariable -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#ProgramVariable">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Variable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Pump -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Pump">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Component"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Rules -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Rules"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunTogetherRelation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunTogetherRelation">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#runTogetherWith"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Component"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#runTogetherFor"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#UserInputVariable -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#UserInputVariable">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Variable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Variable -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Variable"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#EmergencyFlush -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#EmergencyFlush">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Pump"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#EmergencyStop -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#EmergencyStop">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#UserInputVariable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#IntakePump1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#IntakePump1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Pump"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#IntakePump2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#IntakePump2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Pump"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#IntakePump3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#IntakePump3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Pump"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#MixerO -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#MixerO">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Mixer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#OuttakePump -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#OuttakePump">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Pump"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#R1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#R1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Rules"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#R2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#R2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#Rules"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunEmergencyFlush -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunEmergencyFlush">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#ProgramVariable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunIntakePump1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunIntakePump1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#ProgramVariable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunIntakePump2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunIntakePump2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#ProgramVariable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunIntakePump3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunIntakePump3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#ProgramVariable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunMixer -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunMixer">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#ProgramVariable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunOuttakePump -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunOuttakePump">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#ProgramVariable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunProcess -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunProcess">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#UserInputVariable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunTogetherRelationMIP2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunTogetherRelationMIP2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunTogetherRelation"/>
+        <runTogetherWith rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#IntakePump2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunTogetherRelationMIP3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunTogetherRelationMIP3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#RunTogetherRelation"/>
+        <runTogetherWith rdf:resource="http://www.semanticweb.org/ezer/ontologies/2021/6/chemicalProcess#IntakePump3"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

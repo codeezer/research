@@ -1,6 +1,5 @@
 package us.bsu.cs;
 
-import java.util.Iterator;
 import java.util.Random;
 
 public class CHEMSIM {
