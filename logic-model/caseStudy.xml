@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+
+int t=0;
+int rt=0;
+int et=0;
+bool GlobalReset = 1;
+bool EmergencyStop = 1;
+bool RunProcess = 0;
+
+bool RunEmergencyFlush = 0;</declaration>
+	<template>
+		<name x="5" y="5">TimeCounter</name>
+		<parameter>bool &amp;resetFlag, int &amp;a</parameter>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id0" x="-1198" y="-943">
+			<urgent/>
+		</location>
+		<location id="id1" x="-1011" y="-943">
+			<urgent/>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id0"/>
+			<label kind="guard" x="-1232" y="-1002">resetFlag==0</label>
+			<label kind="assignment" x="-1215" y="-986">a=0</label>
+			<nail x="-1172" y="-985"/>
+			<nail x="-1232" y="-985"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<nail x="-1011" y="-883"/>
+			<nail x="-1198" y="-883"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="guard" x="-1181" y="-960">resetFlag==1</label>
+			<label kind="assignment" x="-1138" y="-943">a = a+1</label>
+		</transition>
+	</template>
+	<template>
+		<name>Emergency</name>
+		<location id="id2" x="-1258" y="-1096">
+			<name x="-1283" y="-1130">Normal</name>
+		</location>
+		<location id="id3" x="-935" y="-1096">
+			<name x="-969" y="-1130">Emergency</name>
+			<urgent/>
+		</location>
+		<init ref="id2"/>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-1122" y="-1003">et&gt;=5</label>
+			<label kind="assignment" x="-1198" y="-969">RunEmergencyFlush=0</label>
+			<nail x="-935" y="-977"/>
+			<nail x="-1258" y="-977"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="guard" x="-1216" y="-1121">EmergencyStop==1</label>
+			<label kind="assignment" x="-1216" y="-1087">RunEmergencyFlush=1, et=0</label>
+		</transition>
+	</template>
+	<template>
+		<name>Component</name>
+		<parameter>bool &amp;componentFlag</parameter>
+		<location id="id4" x="-442" y="-136">
+			<name x="-452" y="-170">idle</name>
+			<urgent/>
+		</location>
+		<location id="id5" x="-187" y="-136">
+			<name x="-197" y="-170">running</name>
+			<urgent/>
+		</location>
+		<init ref="id4"/>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id4"/>
+			<label kind="guard" x="-391" y="-85">componentFlag==0</label>
+			<nail x="-187" y="-85"/>
+			<nail x="-442" y="-85"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-391" y="-153">componentFlag==1</label>
+		</transition>
+	</template>
+	<template>
+		<name>Test</name>
+		<location id="id6" x="-1283" y="-399">
+		</location>
+		<location id="id7" x="-1054" y="-399">
+		</location>
+		<init ref="id6"/>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<label kind="assignment" x="-1241" y="-501">EmergencyStop=0</label>
+			<nail x="-1326" y="-399"/>
+			<nail x="-1326" y="-501"/>
+			<nail x="-1011" y="-501"/>
+			<nail x="-1011" y="-399"/>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<label kind="assignment" x="-1232" y="-459">RunProcess=0</label>
+			<nail x="-1054" y="-459"/>
+			<nail x="-1283" y="-459"/>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<label kind="assignment" x="-1241" y="-331">EmergencyStop=1</label>
+			<nail x="-1054" y="-331"/>
+			<nail x="-1283" y="-331"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<label kind="assignment" x="-1232" y="-399">RunProcess=1</label>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+globalCounter = TimeCounter(GlobalReset, t);
+emergencyTimeCounter = TimeCounter(EmergencyStop, et);
+runProcessTimeCounter = TimeCounter(RunProcess, rt);
+test = Test();
+
+emergency = Emergency();
+
+emergencyFlush = Component(RunEmergencyFlush);
+
+
+// List one or more processes to be composed into a system.
+system globalCounter, emergencyTimeCounter, runProcessTimeCounter, emergency, emergencyFlush;</system>
+	<queries>
+		<query>
+			<formula>E&lt;&gt; emergency.Emergency and emergencyFlush.running</formula>
+			<comment></comment>
+		</query>
+	</queries>
+</nta>

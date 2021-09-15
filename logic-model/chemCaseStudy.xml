@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+
+broadcast chan RunEmergencyFlush, StopEmergencyFlush;
+broadcast chan RunIntakePump1, StopIntakePump1;
+broadcast chan RunIntakePump2, StopIntakePump2;
+broadcast chan RunIntakePump3, StopIntakePump3;
+broadcast chan RunMixer, StopMixer;
+broadcast chan RunOuttakePump, StopOuttakePump;
+
+broadcast chan tick;
+const int TICK = 1;
+clock x;
+clock y;
+
+bool EmergencyStop = 0;
+bool RunProcess = 1;
+
+int et = 0;
+int rt = 0;</declaration>
+	<template>
+		<name>Component</name>
+		<parameter>broadcast chan &amp;componentTFlag, broadcast chan &amp;componentFFlag</parameter>
+		<location id="id0" x="-272" y="-246">
+			<name x="-289" y="-280">idle</name>
+		</location>
+		<location id="id1" x="-68" y="-246">
+			<name x="-94" y="-280">running</name>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-238" y="-203">componentFFlag?</label>
+			<nail x="-68" y="-186"/>
+			<nail x="-272" y="-186"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-238" y="-263">componentTFlag?</label>
+		</transition>
+	</template>
+	<template>
+		<name>Process</name>
+		<location id="id2" x="-1173" y="-391">
+		</location>
+		<location id="id3" x="-943" y="-391">
+		</location>
+		<location id="id4" x="-697" y="-391">
+		</location>
+		<location id="id5" x="-697" y="-255">
+			<urgent/>
+		</location>
+		<location id="id6" x="-901" y="-255">
+			<committed/>
+		</location>
+		<location id="id7" x="-901" y="-110">
+			<committed/>
+		</location>
+		<location id="id8" x="-697" y="-110">
+		</location>
+		<location id="id9" x="-697" y="25">
+		</location>
+		<location id="id10" x="-901" y="25">
+		</location>
+		<location id="id11" x="-1173" y="25">
+			<committed/>
+		</location>
+		<location id="id12" x="-1173" y="-110">
+		</location>
+		<location id="id13" x="-1173" y="-255">
+			<urgent/>
+		</location>
+		<init ref="id2"/>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id12"/>
+			<label kind="guard" x="-1249" y="-119">rt &lt; 15</label>
+			<label kind="synchronisation" x="-1309" y="-136">tick?</label>
+			<label kind="assignment" x="-1352" y="-110">rt = rt + 1</label>
+			<nail x="-1258" y="-161"/>
+			<nail x="-1258" y="-59"/>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id10"/>
+			<label kind="guard" x="-918" y="68">rt&lt;10</label>
+			<label kind="synchronisation" x="-918" y="110">tick?</label>
+			<label kind="assignment" x="-943" y="93">rt = rt + 1</label>
+			<nail x="-960" y="85"/>
+			<nail x="-841" y="85"/>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id9"/>
+			<label kind="guard" x="-671" y="42">rt&lt;6</label>
+			<label kind="synchronisation" x="-629" y="68">tick?</label>
+			<label kind="assignment" x="-612" y="42">rt = rt + 1</label>
+			<nail x="-671" y="102"/>
+			<nail x="-603" y="25"/>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id8"/>
+			<label kind="guard" x="-679" y="-152">rt&lt;4</label>
+			<label kind="synchronisation" x="-629" y="-161">tick?</label>
+			<label kind="assignment" x="-663" y="-187">rt = rt + 1</label>
+			<nail x="-603" y="-127"/>
+			<nail x="-688" y="-187"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id4"/>
+			<label kind="guard" x="-679" y="-437">rt &lt; 2</label>
+			<label kind="synchronisation" x="-620" y="-450">tick?</label>
+			<label kind="assignment" x="-654" y="-467">rt = rt+1</label>
+			<nail x="-603" y="-416"/>
+			<nail x="-688" y="-476"/>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id2"/>
+			<label kind="assignment" x="-1173" y="-323">rt=0</label>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id13"/>
+			<label kind="guard" x="-1164" y="-195">rt==15</label>
+			<label kind="synchronisation" x="-1164" y="-170">StopOuttakePump!</label>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id12"/>
+			<label kind="synchronisation" x="-1164" y="-42">RunOuttakePump!</label>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id11"/>
+			<label kind="guard" x="-1062" y="25">rt==10</label>
+			<label kind="synchronisation" x="-1071" y="8">StopMixer!</label>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id10"/>
+			<label kind="guard" x="-833" y="25">rt==6</label>
+			<label kind="synchronisation" x="-858" y="8">StopIntakePump3!</label>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id9"/>
+			<label kind="guard" x="-688" y="-68">rt==4</label>
+			<label kind="synchronisation" x="-688" y="-51">StopIntakePump2!</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id8"/>
+			<label kind="synchronisation" x="-867" y="-127">RunMixer!</label>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="-892" y="-187">RunIntakePump3!</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="-867" y="-272">RunIntakePump2!</label>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-688" y="-348">rt==2</label>
+			<label kind="synchronisation" x="-688" y="-331">StopIntakePump1!</label>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-892" y="-408">RunIntakePump1!</label>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="guard" x="-1139" y="-408">RunProcess==1  &amp;&amp; 
+EmergencyStop==0</label>
+		</transition>
+	</template>
+	<template>
+		<name>Emergency</name>
+		<location id="id14" x="-713" y="-306">
+			<name x="-747" y="-340">Normal</name>
+		</location>
+		<location id="id15" x="-484" y="-306">
+			<name x="-544" y="-289">StartEmergency</name>
+			<urgent/>
+		</location>
+		<location id="id16" x="-230" y="-306">
+		</location>
+		<location id="id17" x="-43" y="-306">
+			<name x="-26" y="-315">Emergency</name>
+			<urgent/>
+		</location>
+		<location id="id18" x="-43" y="-145">
+			<urgent/>
+		</location>
+		<location id="id19" x="-357" y="-145">
+		</location>
+		<init ref="id14"/>
+		<transition>
+			<source ref="id19"/>
+			<target ref="id14"/>
+			<label kind="guard" x="-620" y="-145">EmergencyStop==0</label>
+			<nail x="-714" y="-145"/>
+		</transition>
+		<transition>
+			<source ref="id18"/>
+			<target ref="id19"/>
+			<label kind="synchronisation" x="-280" y="-162">StopEmergencyFlush!</label>
+		</transition>
+		<transition>
+			<source ref="id17"/>
+			<target ref="id18"/>
+			<label kind="guard" x="-34" y="-255">et==5</label>
+			<label kind="assignment" x="-34" y="-238">et=0</label>
+		</transition>
+		<transition>
+			<source ref="id17"/>
+			<target ref="id16"/>
+			<label kind="guard" x="-136" y="-374">et&lt;5</label>
+			<nail x="-43" y="-349"/>
+			<nail x="-188" y="-349"/>
+		</transition>
+		<transition>
+			<source ref="id16"/>
+			<target ref="id17"/>
+			<label kind="synchronisation" x="-153" y="-323">tick?</label>
+			<label kind="assignment" x="-179" y="-306">et = et + 1</label>
+		</transition>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id16"/>
+			<label kind="synchronisation" x="-425" y="-323">RunEmergencyFlush!</label>
+		</transition>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id15"/>
+			<label kind="guard" x="-680" y="-323">EmergencyStop==1</label>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">Clock</name>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id20" x="-382" y="-144">
+			<label kind="invariant" x="-392" y="-127">y &lt;= TICK</label>
+		</location>
+		<init ref="id20"/>
+		<transition>
+			<source ref="id20"/>
+			<target ref="id20"/>
+			<label kind="guard" x="-399" y="-229">y==TICK</label>
+			<label kind="synchronisation" x="-391" y="-212">tick!</label>
+			<label kind="assignment" x="-399" y="-195">y := 0</label>
+			<nail x="-433" y="-195"/>
+			<nail x="-323" y="-195"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+global_clock = Clock();
+
+intakePump1 = Component(RunIntakePump1, StopIntakePump1);
+intakePump2 = Component(RunIntakePump2, StopIntakePump2);
+intakePump3 = Component(RunIntakePump3, StopIntakePump3);
+mixer = Component(RunMixer, StopMixer);
+outtakePump = Component(RunOuttakePump, StopOuttakePump);
+
+emergencyFlush = Component(RunEmergencyFlush, StopEmergencyFlush);
+
+emergencyState = Emergency();
+runProcess = Process();
+// List one or more processes to be composed into a system.
+system global_clock, intakePump1, intakePump2, intakePump3, mixer, outtakePump, emergencyFlush, runProcess, emergencyState;
+    </system>
+	<queries>
+		<query>
+			<formula></formula>
+			<comment></comment>
+		</query>
+	</queries>
+</nta>
