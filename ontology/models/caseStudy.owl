@@ -66,7 +66,9 @@
 
     <!-- http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#canEnable -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#canEnable"/>
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#canEnable">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+    </owl:ObjectProperty>
     
 
 
@@ -74,6 +76,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#canEnableSwitch">
         <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#canEnable"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#User"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#UserInputSwitch"/>
     </owl:ObjectProperty>
@@ -84,6 +87,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#contains">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
     </owl:ObjectProperty>
     
 
@@ -92,6 +96,8 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#containsChemical">
         <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#contains"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#isContainedByComponent"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#Tank"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#Chemical"/>
     </owl:ObjectProperty>
@@ -100,7 +106,9 @@
 
     <!-- http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#hasEnabled -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#hasEnabled"/>
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#hasEnabled">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+    </owl:ObjectProperty>
     
 
 
@@ -109,8 +117,27 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#hasEnabledSwitch">
         <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#hasEnabled"/>
         <owl:inverseOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#isEnabledByUser"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#LoggedInUser"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#LRSwitch"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#isContainedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#isContainedBy">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#isContainedByComponent -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#isContainedByComponent">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#isContainedBy"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
     </owl:ObjectProperty>
     
 
@@ -119,6 +146,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#isEnabledBy">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
     </owl:ObjectProperty>
     
 
@@ -127,6 +155,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#isEnabledByUser">
         <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#isEnabledBy"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#LRSwitch"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#LoggedInUser"/>
     </owl:ObjectProperty>
@@ -137,6 +166,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#isVulnerableTo">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#Attack"/>
     </owl:ObjectProperty>
     
@@ -520,6 +550,7 @@
         <rdf:type rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#Tank"/>
         <containsChemical rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#Chemical_A"/>
         <containsChemical rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#Chemical_B"/>
+        <containsChemical rdf:resource="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#Chemical_C"/>
     </owl:NamedIndividual>
     <rdf:Description>
         <ontodebug:axiom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hasEnabledSwitch Range LRSwitch</ontodebug:axiom>
@@ -556,6 +587,35 @@
     <rdf:Description>
         <ontodebug:axiom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bob hasEnabledSwitch EmergencyStop</ontodebug:axiom>
         <ontodebug:type rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ontodebug:type>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#Attack"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#Chemical"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#Component"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#User"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#Attack"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#Chemical"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#User"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ezer/ontologies/2022/1/untitled-ontology-9#Variable"/>
+        </owl:members>
     </rdf:Description>
 </rdf:RDF>
 
