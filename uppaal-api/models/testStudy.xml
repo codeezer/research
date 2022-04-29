@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nta>
+	<declaration>// Place global declarations here.
+
+chan RunIntakePump1, StopIntakePump1;
+chan RunIntakePump2, StopIntakePump2;
+chan RunIntakePump3, StopIntakePump3;
+chan RunMixer, StopMixer;
+chan RunOuttakePump, StopOuttakePump;
+chan RunEmergencyFlush, StopEmergencyFlush;
+chan TankRefill;
+broadcast chan GlobalStop;
+bool RunProcess=1;
+broadcast chan EmergencyStop, NoEmergencyStop;
+bool emergencyFlag=0;
+
+clock t;
+
+int A = 130;
+int B = 150;
+int C = 200;
+
+</declaration>
+	<template>
+		<name x="5" y="5">Component</name>
+		<parameter>chan &amp;componentTFlag, chan &amp;componentFFlag</parameter>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id0" x="-569" y="-884">
+			<name x="-579" y="-918">idle</name>
+		</location>
+		<location id="id1" x="-340" y="-884">
+			<name x="-366" y="-918">running</name>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-501" y="-816">GlobalStop?</label>
+			<nail x="-306" y="-884"/>
+			<nail x="-306" y="-816"/>
+			<nail x="-603" y="-816"/>
+			<nail x="-603" y="-884"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-518" y="-858">componentFFlag?</label>
+			<nail x="-340" y="-841"/>
+			<nail x="-569" y="-841"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-518" y="-901">componentTFlag?</label>
+		</transition>
+	</template>
+	<template>
+		<name>Process</name>
+		<location id="id2" x="-577" y="-178">
+			<name x="-587" y="-212">C0</name>
+			<label kind="invariant" x="-587" y="-161">t&lt;=0</label>
+		</location>
+		<location id="id3" x="-178" y="-178">
+			<name x="-188" y="-212">C2</name>
+		</location>
+		<location id="id4" x="-17" y="-178">
+			<name x="-27" y="-212">C3</name>
+			<urgent/>
+		</location>
+		<location id="id5" x="-144" y="-119">
+			<name x="-154" y="-153">C4</name>
+			<urgent/>
+		</location>
+		<location id="id6" x="-8" y="-34">
+			<name x="-18" y="-68">C5</name>
+			<urgent/>
+		</location>
+		<location id="id7" x="-102" y="59">
+			<name x="-112" y="25">C6</name>
+		</location>
+		<location id="id8" x="-102" y="153">
+			<name x="-112" y="119">C7</name>
+		</location>
+		<location id="id9" x="-289" y="153">
+			<name x="-299" y="119">C8</name>
+		</location>
+		<location id="id10" x="-408" y="153">
+			<name x="-418" y="119">C9</name>
+			<urgent/>
+		</location>
+		<location id="id11" x="-578" y="153">
+			<name x="-588" y="119">C10</name>
+		</location>
+		<location id="id12" x="-578" y="34">
+			<name x="-588" y="0">C11</name>
+			<urgent/>
+		</location>
+		<location id="id13" x="-365" y="-178">
+			<name x="-375" y="-212">C1</name>
+			<urgent/>
+		</location>
+		<init ref="id2"/>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="-340" y="-195">RunIntakePump1!</label>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-527" y="-229">EmergencyStop?</label>
+			<nail x="-399" y="-212"/>
+			<nail x="-569" y="-212"/>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-748" y="-17">EmergencyStop?</label>
+			<nail x="-629" y="153"/>
+			<nail x="-629" y="-195"/>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-569" y="51">EmergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-357" y="59">EmergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-357" y="17">EmergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-187" y="0">EmergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-348" y="-289">EmergencyStop?</label>
+			<nail x="-17" y="-272"/>
+			<nail x="-578" y="-272"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-425" y="-263">EmergencyStop?</label>
+			<nail x="-178" y="-246"/>
+			<nail x="-578" y="-246"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-680" y="-255">A&lt;100 or 
+B &lt; 100 or 
+C &lt; 100</label>
+			<label kind="synchronisation" x="-714" y="-204">TankRefill!</label>
+			<nail x="-637" y="-178"/>
+			<nail x="-603" y="-229"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id13"/>
+			<label kind="guard" x="-535" y="-204">RunProcess==1 
+and
+emergencyFlag==0
+and 
+A&gt;0 and B&gt;0 and C&gt;0</label>
+			<label kind="synchronisation" x="-559" y="-195">GlobalStop!</label>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id2"/>
+			<label kind="assignment" x="-569" y="-85">t=0</label>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id12"/>
+			<label kind="guard" x="-569" y="85">t&gt;=15</label>
+			<label kind="synchronisation" x="-569" y="102">StopOuttakePump!</label>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="-552" y="136">RunOuttakePump!</label>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id10"/>
+			<label kind="guard" x="-374" y="136">t&gt;=10</label>
+			<label kind="synchronisation" x="-382" y="153">StopMixer!</label>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id9"/>
+			<label kind="guard" x="-229" y="136">t&gt;=6</label>
+			<label kind="synchronisation" x="-263" y="153">StopIntakePump3!</label>
+			<label kind="assignment" x="-238" y="170">C = C-4</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id8"/>
+			<label kind="guard" x="-93" y="85">t&gt;=4</label>
+			<label kind="synchronisation" x="-93" y="102">StopIntakePump2!</label>
+			<label kind="assignment" x="-93" y="119">B = B-2</label>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="-51" y="8">RunMixer!</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="-76" y="-102">RunIntakePump3!</label>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-85" y="-153">RunIntakePump2!</label>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="guard" x="-119" y="-212">t&gt;=2</label>
+			<label kind="synchronisation" x="-161" y="-195">StopIntakePump1!</label>
+			<label kind="assignment" x="-127" y="-178">A = A-2</label>
+		</transition>
+	</template>
+	<template>
+		<name>FillTank</name>
+		<location id="id14" x="-255" y="-144">
+			<name x="-289" y="-178">idle</name>
+		</location>
+		<location id="id15" x="-102" y="-144">
+			<name x="-112" y="-178">RT</name>
+			<urgent/>
+		</location>
+		<location id="id16" x="25" y="-238">
+			<name x="25" y="-272">refillA</name>
+		</location>
+		<location id="id17" x="34" y="-144">
+			<name x="25" y="-178">refillB</name>
+		</location>
+		<location id="id18" x="34" y="-51">
+			<name x="24" y="-85">refillC</name>
+		</location>
+		<init ref="id14"/>
+		<transition>
+			<source ref="id18"/>
+			<target ref="id14"/>
+			<nail x="34" y="-17"/>
+			<nail x="-153" y="-102"/>
+		</transition>
+		<transition>
+			<source ref="id17"/>
+			<target ref="id14"/>
+			<nail x="76" y="-144"/>
+			<nail x="68" y="-306"/>
+			<nail x="-170" y="-221"/>
+		</transition>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id18"/>
+			<label kind="guard" x="-102" y="-110">C&lt;100</label>
+			<label kind="assignment" x="-25" y="-110">C = C+200</label>
+		</transition>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id17"/>
+			<label kind="guard" x="-51" y="-161">B&lt;100</label>
+			<label kind="assignment" x="-51" y="-144">B=B+150</label>
+		</transition>
+		<transition>
+			<source ref="id16"/>
+			<target ref="id14"/>
+			<nail x="25" y="-263"/>
+			<nail x="-136" y="-195"/>
+		</transition>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id16"/>
+			<label kind="guard" x="-59" y="-221">A&lt;100</label>
+			<label kind="assignment" x="-34" y="-195">A= A+130</label>
+		</transition>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id15"/>
+			<label kind="synchronisation" x="-212" y="-161">TankRefill?</label>
+		</transition>
+	</template>
+	<template>
+		<name>Emergency</name>
+		<location id="id19" x="-314" y="-127">
+			<name x="-324" y="-161">E0</name>
+		</location>
+		<location id="id20" x="119" y="-127">
+			<name x="136" y="-144">E3</name>
+		</location>
+		<location id="id21" x="119" y="-17">
+			<name x="109" y="-51">E4</name>
+		</location>
+		<location id="id22" x="-127" y="-127">
+			<name x="-137" y="-161">E1</name>
+			<urgent/>
+		</location>
+		<location id="id23" x="8" y="-187">
+			<name x="-2" y="-221">E2</name>
+		</location>
+		<init ref="id19"/>
+		<transition>
+			<source ref="id23"/>
+			<target ref="id20"/>
+			<label kind="synchronisation" x="59" y="-178">RunEmergencyFlush!</label>
+			<label kind="assignment" x="93" y="-161">t=0, emergencyFlag=1</label>
+		</transition>
+		<transition>
+			<source ref="id22"/>
+			<target ref="id23"/>
+			<label kind="synchronisation" x="-76" y="-153">GlobalStop!</label>
+			<label kind="assignment" x="-85" y="-144">emergencyFlag=1</label>
+		</transition>
+		<transition>
+			<source ref="id22"/>
+			<target ref="id19"/>
+			<label kind="synchronisation" x="-289" y="-204">NoEmergencyStop?</label>
+			<nail x="-127" y="-187"/>
+			<nail x="-314" y="-187"/>
+		</transition>
+		<transition>
+			<source ref="id19"/>
+			<target ref="id22"/>
+			<label kind="synchronisation" x="-272" y="-153">EmergencyStop?</label>
+			<label kind="assignment" x="-280" y="-127">emergencyFlag=1</label>
+		</transition>
+		<transition>
+			<source ref="id21"/>
+			<target ref="id19"/>
+			<label kind="synchronisation" x="-161" y="-42">NoEmergencyStop!</label>
+			<label kind="assignment" x="-221" y="-68">emergencyFlag=0</label>
+		</transition>
+		<transition>
+			<source ref="id20"/>
+			<target ref="id21"/>
+			<label kind="guard" x="127" y="-85">t&gt;=5</label>
+			<label kind="synchronisation" x="119" y="-59">StopEmergencyFlush!</label>
+			<label kind="assignment" x="119" y="-72">emergencyFlag=1</label>
+		</transition>
+	</template>
+	<template>
+		<name>UserInput</name>
+		<location id="id24" x="-603" y="-204">
+			<name x="-613" y="-238">S0</name>
+		</location>
+		<branchpoint id="id25" x="-416" y="-204">
+		</branchpoint>
+		<init ref="id24"/>
+		<transition>
+			<source ref="id25"/>
+			<target ref="id24"/>
+			<label kind="assignment" x="-585" y="-119">RunProcess=1</label>
+			<nail x="-357" y="-204"/>
+			<nail x="-357" y="-119"/>
+			<nail x="-603" y="-119"/>
+		</transition>
+		<transition>
+			<source ref="id25"/>
+			<target ref="id24"/>
+			<label kind="assignment" x="-544" y="-289">RunProcess=1</label>
+			<label kind="probability" x="-577" y="-272">1</label>
+			<nail x="-391" y="-238"/>
+			<nail x="-391" y="-289"/>
+			<nail x="-595" y="-289"/>
+		</transition>
+		<transition>
+			<source ref="id25"/>
+			<target ref="id24"/>
+			<label kind="assignment" x="-510" y="-331">RunProcess=1</label>
+			<label kind="probability" x="-467" y="-306">1</label>
+			<nail x="-365" y="-204"/>
+			<nail x="-365" y="-306"/>
+			<nail x="-603" y="-306"/>
+		</transition>
+		<transition>
+			<source ref="id25"/>
+			<target ref="id24"/>
+			<label kind="synchronisation" x="-578" y="-246">EmergencyStop!</label>
+			<label kind="probability" x="-527" y="-272">2</label>
+			<nail x="-433" y="-255"/>
+			<nail x="-603" y="-255"/>
+		</transition>
+		<transition>
+			<source ref="id25"/>
+			<target ref="id24"/>
+			<label kind="assignment" x="-561" y="-170">RunProcess=1</label>
+			<label kind="probability" x="-552" y="-153">100000</label>
+			<nail x="-433" y="-153"/>
+			<nail x="-603" y="-153"/>
+		</transition>
+		<transition>
+			<source ref="id24"/>
+			<target ref="id25"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+intakePump1 = Component(RunIntakePump1, StopIntakePump1);
+intakePump2 = Component(RunIntakePump2, StopIntakePump2);
+intakePump3 = Component(RunIntakePump3, StopIntakePump3);
+mixer = Component(RunMixer, StopMixer);
+outtakePump = Component(RunOuttakePump, StopOuttakePump);
+emergencyFlush = Component(RunEmergencyFlush, StopEmergencyFlush);
+chemicalProcess = Process();
+emergencyProcess = Emergency();
+userInput = UserInput();
+fillTank = FillTank();
+
+
+// List one or more processes to be composed into a system.
+system intakePump1, intakePump2, intakePump3, mixer, outtakePump, emergencyFlush, chemicalProcess, fillTank;</system>
+	<queries>
+		<query>
+			<formula>A[] not deadlock</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; emergencyFlush.running and intakePump1.running</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; mixer.running and intakePump1.running</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; mixer.running and intakePump2.running</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; A&lt;5 and intakePump1.running</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; emergencyFlush.running and intakePump1.running</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; intakePump3.running and intakePump1.running and intakePump2.running</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; outtakePump.running</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; intakePump1.running and intakePump2.running and intakePump3.running</formula>
+			<comment></comment>
+		</query>
+	</queries>
+</nta>
